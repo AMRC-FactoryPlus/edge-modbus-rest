@@ -1,0 +1,9 @@
+version: "3.7"
+services:
+  modbus-rest:
+    image: "amrc-factoryplus.shef.ac.uk:5000/modbus-rest:0.0.1"
+    environment:
+      - DEBUG=true
+    restart: unless-stopped
+    ports:
+      - 20900:20900

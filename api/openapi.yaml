@@ -1,0 +1,136 @@
+openapi: 3.0.0
+info:
+  title: Modbus REST API
+  version: 1.0.0
+  description: This service provides a REST interface for connecting to Modbus devices and reading data.
+
+servers:
+  - url: /v1
+    description: Modbus API version 1
+
+security:
+  - basic: []
+  - gssapi: []
+  - token: []
+
+paths:
+  /random:
+    get:
+      summary: Generate a random number
+      responses:
+        '200':
+          description: Successful response with a random number.
+          content:
+            application/json:
+              example:
+                value: 42.73
+
+  /stop:
+    get:
+      summary: Stop the application
+      responses:
+        '200':
+          description: Request accepted.
+
+  /read/{ip}/{port}/{unitId}/{regType}/{startAddress}/{quantity}:
+    parameters:
+      - name: ip
+        in: path
+        required: true
+        description: IP address of the Modbus device.
+        schema:
+          type: string
+      - name: port
+        in: path
+        required: true
+        description: Port number of the Modbus device.
+        schema:
+          type: integer
+      - name: unitId
+        in: path
+        required: true
+        description: Unit ID of the Modbus device.
+        schema:
+          type: integer
+      - name: regType
+        in: path
+        required: true
+        description: Type of Modbus registers (e.g., 'holding' or 'input').
+        schema:
+          type: string
+      - name: startAddress
+        in: path
+        required: true
+        description: Start address of the register.
+        schema:
+          type: integer
+      - name: quantity
+        in: path
+        required: true
+        description: Number of registers to read.
+        schema:
+          type: integer
+      - name: conversion
+        in: query
+        description: Conversion method (e.g., 'raw', 'float32', 'integer', 'string').
+        schema:
+          type: string
+      - name: endianness
+        in: query
+        description: Endianness (e.g., 'little' or 'big').
+        schema:
+          type: string
+      - name: debug
+        in: query
+        description: Enable debug feedback (true/false).
+        schema:
+          type: boolean
+      - name: multiplier
+        in: query
+        description: Multiplier for scaling.
+        schema:
+          type: number
+      - name: offset
+        in: query
+        description: Offset for scaling.
+        schema:
+          type: number
+    get:
+      summary: Read Modbus register values
+      responses:
+        '200':
+          description: Successful response with Modbus register values.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  params:
+                    type: object
+                  query:
+                    type: object
+                  reading:
+                    type: number
+                  transformedReading:
+                    type: number
+
+  /debug:
+    get:
+      summary: Turn debugging on
+      responses:
+        '200':
+          description: Debugging mode turned on.
+components:
+  securitySchemes:
+        basic:
+            type: http
+            description: User/password HTTP Basic auth
+            scheme: Basic
+        gssapi:
+            type: http
+            description: HTTP Negotiate auth (Kerberos)
+            scheme: Negotiate
+        token:
+            type: http
+            description: HTTP bearer token auth
+            scheme: Bearer
