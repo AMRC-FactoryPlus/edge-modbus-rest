@@ -39,11 +39,5 @@ The `/read/...` endpoint offers the scaling of the reading by providing `offset`
 **Example:** http://localhost:20900/read/192.168.255.1/502/1/holding/4110/1/float32?offset=111&multiplier=0.1&conversion=raw&endianness=big
 
 
-### Build
-```bash
-docker build -t amrc-factoryplus.shef.ac.uk:5000/modbus-rest:<version_number> .
-docker push amrc-factoryplus.shef.ac.uk:5000/modbus-rest:<version_number>
-```
-
 ## Acknowledgments
-https://github.com/pakerfeldt/node-modbus-rest
+Code base from: https://github.com/pakerfeldt/node-modbus-rest
