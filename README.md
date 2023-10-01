@@ -8,18 +8,18 @@ Modbus is a serial communication protocol used to exchange information between e
 
 ### API
 Common path parameters in the API are:
-- `ip` - IP of target device, such as `192.168.1.11`
-- `port` - Modbus port, commonly `502`
+- `ip` - IP of target device, such as `192.168.1.11`.
+- `port` - Modbus port, commonly `502`.
 - `unitId` - the slave ID as a numeric, commonly `1`
-- `regType` - The register type such as `input`, `holding`
+- `regType` - The register type such as `input`, `holding` (supported).
 - `startAddress` - the starting address of a read non incremented by 1.
-- `quantity` - the number of registers to read
-- `dataType` - the data type to convert the reading to, such as `float32/uint32/...`
+- `quantity` - the number of registers to read.
+- `dataType` - the data type to convert the reading to, such as `float/uint32/string`.
 
 | URL | Method | Description |
 |-----|--------|-------------|
-| `/random` | GET | Test page to hit to check service. |
 | `/read/{ip}/{port}/{unitId}/{regType}/{startAddress}/{quantity}/` | GET | Reads the values of a register. |
+| `/random` | GET | Test page to hit to check service. |
 
 ### Query Parameters
 #### Conversion
@@ -36,7 +36,7 @@ The following conversion are supported:
 #### Offset and Multiplication
 The `/read/...` endpoint offers the scaling of the reading by providing `offset` and `multiplier` key value pairs by appending the URL with `?offset=<value>&multiplier=<value>`
 
-**Example:** http://localhost:20900/read/192.168.255.1/502/1/holding/4110/1/float32?offset=111&multiplier=0.1&conversion=raw&endianness=big
+**Example:** `http://localhost:20900/read/192.168.255.1/502/1/holding/4110/1/float32?offset=111&multiplier=0.1&conversion=raw&endianness=big`
 
 
 ## Acknowledgments
