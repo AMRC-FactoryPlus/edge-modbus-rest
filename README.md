@@ -1,12 +1,15 @@
 RESTful(ish) API to Modbus
 =======
 
-### Overview
+## Overview
+REST service for allowing to read from Modbus TCP devices with different IP addresses or device IDs by making a REST call.
+Also allows to convert data to the desired data type and adjust data values through specifying an offset and multiplier.
 
-Modbus is a serial communication protocol used to exchange information between electronic devices. Typically, only the modbus master in a modbus network is the one initiating communication and slaves respond to these requests. In this case, the modbus-rest acts as the master and communication (writing and reading registers) is initated through the REST API.
+At this stage only `/read` methods are supported.
 
+## API
+Base URL: `http://<serverIp>:20900/v1`
 
-### API
 Common path parameters in the API are:
 - `ip` - IP of target device, such as `192.168.1.11`.
 - `port` - Modbus port, commonly `502`.
@@ -27,16 +30,18 @@ The `/read/...` endpoint offers the transformation of the reading by providing `
 The following conversion are supported:
 - `conversion`:
     - `raw` - Do not default to any conversion, always return raw response (default)
-    - `integer` (default for registers) - Returns an integer representation of the register value
+    - `integer` - Returns an integer representation of the register value
     - `float32` - Interpret the input as a floating value according to IEEE-754.
 - `endianness`:
     - `little` (default)
     - `big`
 
 #### Offset and Multiplication
-The `/read/...` endpoint offers the scaling of the reading by providing `offset` and `multiplier` key value pairs by appending the URL with `?offset=<value>&multiplier=<value>`
+The `/read/...` endpoint offers the scaling of the reading by providing `offset` and `multiplier` key value pairs:
+- `offset` (default `0`)
+- `multiplier` (default `1`)
 
-**Example:** `http://localhost:20900/read/192.168.255.1/502/1/holding/4110/1/float32?offset=111&multiplier=0.1&conversion=raw&endianness=big`
+**Example:** `http://localhost:20900/v1/read/192.168.255.1/502/1/holding/4110/1/float32?offset=111&multiplier=0.1&conversion=raw&endianness=big`
 
 
 ## Acknowledgments
