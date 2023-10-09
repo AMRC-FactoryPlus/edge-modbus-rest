@@ -22,7 +22,7 @@ jobs:
           jq ".version = \"$VERSION\"" package.json > package.json.tmp
           mv package.json.tmp package.json
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v4
+        uses: peter-evans/create-pull-request@v5
         with:
           title: Update package.json version
           branch: update-version
