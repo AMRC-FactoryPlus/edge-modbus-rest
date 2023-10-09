@@ -1,6 +1,6 @@
 {
   "name": "modbus-rest",
-  "version": "0.1.0",
+  "version": "0.1.0-rc.5",
   "description": "Modbus REST interface",
   "main": "bin/modbus-rest.js",
   "bin": {
