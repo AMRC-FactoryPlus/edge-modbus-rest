@@ -1,6 +1,8 @@
 RESTful(ish) API to Modbus
 =======
 
+![](./docs/overview.png)
+
 ## Overview
 REST service for allowing to read from Modbus TCP devices with different IP addresses or device IDs by making a REST call.
 Also allows to convert data to the desired data type and adjust data values through specifying an offset and multiplier.
