@@ -19,7 +19,6 @@ Common path parameters in the API are:
 - `regType` - The register type such as `input`, `holding` (supported).
 - `startAddress` - the starting address of a read non incremented by 1.
 - `quantity` - the number of registers to read.
-- `dataType` - the data type to convert the reading to, such as `float/uint32/string`.
 
 | URL | Method | Description |
 |-----|--------|-------------|
@@ -43,7 +42,7 @@ The `/read/...` endpoint offers the scaling of the reading by providing `offset`
 - `offset` (default `0`)
 - `multiplier` (default `1`)
 
-**Example:** `http://localhost:20900/v1/read/192.168.255.1/502/1/holding/4110/1/float32?offset=111&multiplier=0.1&conversion=raw&endianness=big`
+**Example:** `http://localhost:20900/v1/read/192.168.255.1/502/1/holding/4110/1?offset=111&multiplier=0.1&conversion=raw&endianness=big`
 
 
 ## Acknowledgments
