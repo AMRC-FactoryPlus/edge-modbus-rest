@@ -27,6 +27,7 @@
   },
   "homepage": "",
   "dependencies": {
+    "async": "^3.2.5",
     "express": "^4.13.3",
     "modbus-serial": "^8.0.13",
     "pino": "^8.15.0",
