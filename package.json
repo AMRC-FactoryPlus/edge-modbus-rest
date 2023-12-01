@@ -1,6 +1,6 @@
 {
   "name": "modbus-rest",
-  "version": "0.1.0",
+  "version": "0.1.1-rc4",
   "description": "Modbus REST interface",
   "main": "bin/modbus-rest.js",
   "bin": {
@@ -27,6 +27,7 @@
   },
   "homepage": "",
   "dependencies": {
+    "async": "^3.2.5",
     "express": "^4.13.3",
     "modbus-serial": "^8.0.13",
     "pino": "^8.15.0",
